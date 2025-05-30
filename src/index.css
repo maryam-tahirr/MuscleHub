@@ -1,0 +1,105 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Light mode colors */
+    --background: 0 0% 100%;
+    --foreground: 10 20% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 10 20% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 10 20% 10%;
+    --primary: 16 100% 50%; /* Vibrant orange-red */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 28 100% 90%;
+    --secondary-foreground: 20 100% 20%;
+    --muted: 28 100% 95%;
+    --muted-foreground: 20 15% 35%;
+    --accent: 10 90% 60%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 80% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 20 10% 85%;
+    --input: 20 10% 85%;
+    --ring: 16 100% 40%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    /* Dark mode colors */
+    --background: 20 10% 10%;
+    --foreground: 0 0% 98%;
+    --card: 20 10% 12%;
+    --card-foreground: 0 0% 98%;
+    --popover: 20 10% 12%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 16 100% 65%;
+    --primary-foreground: 0 0% 10%;
+    --secondary: 28 60% 30%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 28 40% 25%;
+    --muted-foreground: 20 20% 70%;
+    --accent: 10 90% 55%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 80% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 20 15% 25%;
+    --input: 20 15% 25%;
+    --ring: 16 100% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+.muscle-group {
+  @apply cursor-pointer fill-muscle-inactive hover:fill-muscle-hover transition-colors duration-300;
+}
+
+.muscle-group.active {
+  @apply fill-muscle-active animate-pulse-light;
+}
+
+/* Hide scrollbars but allow scrolling */
+.hide-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
+}
+
+/* Light/Dark mode transitions */
+*, *::before, *::after {
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Animation utilities */
+@keyframes fade-in {
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse-light {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.5s ease-out forwards;
+}
+
+.animate-pulse-light {
+  animation: pulse-light 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
