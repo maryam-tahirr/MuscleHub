@@ -95,7 +95,7 @@ const SignUp = () => {
                   <FormItem>
                     <FormLabel>Name</FormLabel>
                     <FormControl>
-                      <Input placeholder="John Doe" {...field} />
+                      <Input placeholder="Usman Ahmed" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
