@@ -15,6 +15,7 @@ import { fetchSavedWorkouts, saveWorkoutToFirestore } from '@/services/firebaseW
 import { updateUserWorkoutStats } from '@/services/firebaseUserStatsService';
 import { Dumbbell } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { WorkoutNameModal } from '@/components/WorkoutNameModal';
 
 type WorkoutExercise = {
   exercise: Exercise;
@@ -51,32 +52,35 @@ const WorkoutBuilder = () => {
   const whistleRef = useRef<HTMLAudioElement | null>(null);
   const countdownBeepRef = useRef<HTMLAudioElement | null>(null);
   const totalWorkoutTime = workoutItems.reduce((acc, curr) => acc + curr.duration, 0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [pendingSave, setPendingSave] = useState(false);
 
   const { data: bodyParts = [], isLoading: isLoadingBodyParts } = useQuery({
     queryKey: ['bodyParts'],
     queryFn: fetchAllBodyParts,
   });
-  const handleSaveWorkout = async () => {
-    const name = prompt('Enter a name for your workout:');
+const handleSaveWorkout = async (name: string, description: string) => {
     if (!name) return;
 
     const timestamp = new Date().toISOString();
+
     const exercisesToSave = workoutItems.map((item) =>
-  isRestPeriod(item)
-    ? { type: 'rest', duration: item.duration }
-    : {
-        id: item.exercise.id,
-        name: item.exercise.name,
-        sets: 1,
-        reps: 1,
-        duration: item.duration,
-        gifUrl: item.exercise.gifUrl,
-        target: item.exercise.target,
-        equipment: item.exercise.equipment,
-        secondaryMuscles: item.exercise.secondaryMuscles || [],
-        type: 'exercise',
-      }
-);
+      isRestPeriod(item)
+        ? { type: 'rest', duration: item.duration }
+        : {
+            id: item.exercise.id,
+            name: item.exercise.name,
+            sets: 1,
+            reps: 1,
+            duration: item.duration,
+            gifUrl: item.exercise.gifUrl,
+            target: item.exercise.target,
+            equipment: item.exercise.equipment,
+            secondaryMuscles: item.exercise.secondaryMuscles || [],
+            type: 'exercise',
+          }
+    );
+
     const muscleSet = new Set<string>();
     exercisesToSave.forEach((ex) => {
       if (ex.type === 'exercise') {
@@ -88,15 +92,12 @@ const WorkoutBuilder = () => {
     });
 
     const musclesWorked = Array.from(muscleSet);
-
-
-
     const totalDuration = workoutItems.reduce((sum, item) => sum + item.duration, 0);
 
     try {
       await saveWorkoutToFirestore({
         name,
-        description: '',
+        description,
         exercises: exercisesToSave,
         duration: totalDuration,
         createdAt: timestamp,
@@ -107,6 +108,22 @@ const WorkoutBuilder = () => {
       console.error('Failed to save workout:', err);
       toast.error('Failed to save workout');
     }
+  };
+  const onSaveWorkoutClick = () => {
+    if (workoutItems.length === 0) {
+      toast.error('Add exercises to save a workout!');
+      return;
+    }
+    setIsModalOpen(true);
+  };
+
+  const onModalSave = (name: string, description: string) => {
+    setIsModalOpen(false);
+    handleSaveWorkout(name,description);
+  };
+
+  const onModalCancel = () => {
+    setIsModalOpen(false);
   };
   const exercisesToSave = workoutItems.map((item) =>
   isRestPeriod(item)
@@ -632,10 +649,15 @@ useEffect(() => {
                     variant="secondary"
                     className="w-full"
                     disabled={workoutItems.length === 0}
-                    onClick={handleSaveWorkout}
+                    onClick={onSaveWorkoutClick}
                   >
                     Save Workout
                   </Button>
+                  <WorkoutNameModal
+        isOpen={isModalOpen}
+        onSave={onModalSave}
+        onCancel={onModalCancel}
+      />
 
                   </CardFooter>
 

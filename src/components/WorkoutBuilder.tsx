@@ -13,6 +13,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 interface WorkoutExercise {
   id: string;
   name: string;
+  description?: string;
   sets: number;
   reps: number;
   rest: number;
