@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate, useLocation, Link } from "react-router-dom";
-import { Dumbbell, Calculator, Home, Menu, BicepsFlexed, Heart } from "lucide-react";
+import { Dumbbell, Calculator, Home, Menu, BicepsFlexed, Heart, Soup } from "lucide-react";
 import { useTheme } from "@/components/ThemeProvider";
 import { Button } from "@/components/ui/button";
 import {
@@ -24,7 +24,9 @@ const Navbar = () => {
     { path: "/", label: "Home", icon: Home },
     { path: "/exercise-library", label: "Exercises", icon: Dumbbell },
     { path: "/workout-builder", label: "Workout Builder", icon: BicepsFlexed },
-    { path: "/calculators", label: "Tools", icon: Calculator },
+    { path: "/calculators", label: "Calculators", icon: Calculator },
+    { path: "/nutrition", label: "Nutrition", icon: Soup },
+    { path: "/yoga", label: "Yoga", icon: Menu },
   ];
 
   const handleLogout = async () => {

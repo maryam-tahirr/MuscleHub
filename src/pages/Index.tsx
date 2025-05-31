@@ -40,7 +40,7 @@ useEffect(() => {
                 </p>
                 <div className="flex flex-wrap gap-4">
                   <Button size="lg" asChild>
-                    <Link to="/exercises">
+                    <Link to="/exercise-library">
                       <BicepsFlexed className="mr-2 h-5 w-5" />
                       Explore Exercises
                     </Link>
