@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { auth } from '@/integrations/firebase/client';
+import { auth } from '@/firebase/client';
 import { Loader2 } from 'lucide-react';
 import { toast } from '@/components/ui/sonner';
 

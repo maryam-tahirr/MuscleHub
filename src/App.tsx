@@ -17,6 +17,8 @@ import SignUp from '@/pages/SignUp';
 import Profile from '@/pages/Profile';
 import NotFound from '@/pages/NotFound';
 import AuthCallback from '@/pages/AuthCallback';
+import Nutrition from './pages/Nutrition';
+import Yoga from './pages/Yoga'; 
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -46,6 +48,8 @@ function App() {
               <Route path="/profile" element={<Profile />} />
               <Route path="/auth/callback" element={<AuthCallback />} />
               <Route path="*" element={<NotFound />} />
+              <Route path="/nutrition" element={<Nutrition />} />
+              <Route path="/yoga" element={<Yoga />} />
             </Routes>
           </BrowserRouter>
         </AuthProvider>

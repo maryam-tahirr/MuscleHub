@@ -13,7 +13,7 @@ import { doc, getDoc, setDoc } from 'firebase/firestore';
 import bcrypt from 'bcryptjs';
 import md5 from 'md5';
 
-import { auth, db } from '../integrations/firebase/client';
+import { auth, db } from '../firebase/client';
 
 export interface AuthUser extends FirebaseUser {
   name?: string;

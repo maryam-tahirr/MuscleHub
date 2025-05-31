@@ -1,4 +1,4 @@
-import { auth, db } from '../integrations/firebase/client';
+import { auth, db } from '../firebase/client';
 import {
   collection,
   query,

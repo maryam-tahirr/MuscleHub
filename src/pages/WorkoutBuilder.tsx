@@ -13,7 +13,8 @@ import { Search, Plus, Trash2, Play, Pause, Clock, X, Timer } from 'lucide-react
 import { toast } from '@/components/ui/sonner';
 import { fetchSavedWorkouts, saveWorkoutToFirestore } from '@/services/firebaseWorkoutService';
 import { updateUserWorkoutStats } from '@/services/firebaseUserStatsService';
-
+import { Dumbbell } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 type WorkoutExercise = {
   exercise: Exercise;
@@ -715,6 +716,28 @@ useEffect(() => {
           </div>
         </DialogContent>
       </Dialog>
+      <footer className="py-8 px-4 border-t border-border bg-background">
+          <div className="container mx-auto max-w-6xl">
+            <div className="flex flex-col md:flex-row justify-between items-center">
+              <div className="flex items-center gap-2 mb-4 md:mb-0">
+                <Dumbbell className="h-5 w-5 text-primary" />
+                <span className="font-semibold text-lg">MuscleMotionHub</span>
+              </div>
+              <div className="flex flex-wrap gap-6">
+                <Link to="/" className="text-sm text-muted-foreground hover:text-foreground">Home</Link>
+                <Link to="/exercise-library" className="text-sm text-muted-foreground hover:text-foreground">Exercise Library</Link>
+                <Link to="/workout-builder" className="text-sm text-muted-foreground hover:text-foreground">Workout Builder</Link>
+                <Link to="/calculators" className="text-sm text-muted-foreground hover:text-foreground">Calculators</Link>
+                <Link to="/nutrition" className="text-sm text-muted-foreground hover:text-foreground">Nutrition</Link>
+                <Link to="/yoga" className="text-sm text-muted-foreground hover:text-foreground">Yoga</Link>
+
+              </div>
+            </div>
+            <div className="mt-6 text-center text-sm text-muted-foreground">
+              © {new Date().getFullYear()} MuscleHub. All rights reserved.
+            </div>
+          </div>
+        </footer>
     </div>
   );
 };

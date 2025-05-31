@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState , useEffect} from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
@@ -8,6 +8,19 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 const Index = () => {
+  const [quote, setQuote] = useState<string | null>(null); 
+  const [author, setAuthor] = useState<string | null>(null);
+  useEffect(() => {
+    fetch("http://api.quotable.io/random?tags=inspirational|motivational")
+
+      .then(res => res.json())
+      .then(data => {
+        setQuote(data.content);
+        setAuthor(data.author);
+      })
+      .catch(err => console.error("Failed to fetch quote", err));
+  }, []);
+
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
@@ -38,6 +51,12 @@ const Index = () => {
                     </Link>
                   </Button>
                 </div>
+                {quote && ( // 🔥 Zen Quote Section
+                  <div className="mt-6 p-4 border-l-4 border-primary bg-secondary/10 rounded">
+                    <p className="text-lg italic">“{quote}”</p>
+                    <p className="text-right text-sm mt-2">— {author}</p>
+                  </div>
+                )}
               </div>
               <div className="flex justify-center">
                 <div
@@ -162,10 +181,13 @@ const Index = () => {
                 <Link to="/exercise-library" className="text-sm text-muted-foreground hover:text-foreground">Exercise Library</Link>
                 <Link to="/workout-builder" className="text-sm text-muted-foreground hover:text-foreground">Workout Builder</Link>
                 <Link to="/calculators" className="text-sm text-muted-foreground hover:text-foreground">Calculators</Link>
+                <Link to="/nutrition" className="text-sm text-muted-foreground hover:text-foreground">Nutrition</Link>
+                <Link to="/yoga" className="text-sm text-muted-foreground hover:text-foreground">Yoga</Link>
+
               </div>
             </div>
             <div className="mt-6 text-center text-sm text-muted-foreground">
-              © {new Date().getFullYear()} MuscleMotionHub. All rights reserved.
+              © {new Date().getFullYear()} MuscleHub. All rights reserved.
             </div>
           </div>
         </footer>
