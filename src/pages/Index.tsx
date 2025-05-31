@@ -10,16 +10,16 @@ import { Textarea } from "@/components/ui/textarea";
 const Index = () => {
   const [quote, setQuote] = useState<string | null>(null); 
   const [author, setAuthor] = useState<string | null>(null);
-  useEffect(() => {
-    fetch("http://api.quotable.io/random?tags=inspirational|motivational")
+useEffect(() => {
+  fetch("http://localhost:5000/api/quote")
+    .then(res => res.json())
+    .then(data => {
+      setQuote(data.quote);
+      setAuthor(data.author);
+    })
+    .catch(err => console.error("Failed to fetch quote", err));
+}, []);
 
-      .then(res => res.json())
-      .then(data => {
-        setQuote(data.content);
-        setAuthor(data.author);
-      })
-      .catch(err => console.error("Failed to fetch quote", err));
-  }, []);
 
   return (
     <div className="min-h-screen flex flex-col">
