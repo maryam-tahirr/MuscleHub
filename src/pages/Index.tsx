@@ -11,7 +11,8 @@ const Index = () => {
   const [quote, setQuote] = useState<string | null>(null); 
   const [author, setAuthor] = useState<string | null>(null);
 useEffect(() => {
-  fetch("http://localhost:5000/api/quote")
+  fetch("/api/quote")
+
     .then(res => res.json())
     .then(data => {
       setQuote(data.quote);
