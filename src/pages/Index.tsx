@@ -122,7 +122,7 @@ useEffect(() => {
         <section className="py-8">
           <div className="container mx-auto max-w-4xl px-4">
             <div className="py-8">
-              <h1 className="text-3xl font-bold mb-2">About MuscleMotionHub</h1>
+              <h1 className="text-3xl font-bold mb-2">About Muscle Hub</h1>
               <p className="text-muted-foreground">
                 Learn more about our platform and how it can help you achieve your fitness goals.
               </p>
@@ -135,7 +135,7 @@ useEffect(() => {
                   <h2 className="text-2xl font-bold">Our Mission</h2>
                 </div>
                 <p className="mb-4 text-lg">
-                  MuscleMotionHub aims to make fitness knowledge accessible to everyone, regardless of experience level. Our platform provides visual, interactive tools to help you understand proper exercise techniques and plan your fitness journey.
+                  Muscle Hub aims to make fitness knowledge accessible to everyone, regardless of experience level. Our platform provides visual, interactive tools to help you understand proper exercise techniques and plan your fitness journey.
                 </p>
                 
               </CardContent>
@@ -175,7 +175,7 @@ useEffect(() => {
             <div className="flex flex-col md:flex-row justify-between items-center">
               <div className="flex items-center gap-2 mb-4 md:mb-0">
                 <Dumbbell className="h-5 w-5 text-primary" />
-                <span className="font-semibold text-lg">MuscleMotionHub</span>
+                <span className="font-semibold text-lg">Muscle Hub</span>
               </div>
               <div className="flex flex-wrap gap-6">
                 <Link to="/" className="text-sm text-muted-foreground hover:text-foreground">Home</Link>

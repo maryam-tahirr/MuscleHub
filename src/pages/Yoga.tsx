@@ -73,7 +73,7 @@ const YogaPoses = () => {
                   <div className="flex flex-col md:flex-row justify-between items-center">
                     <div className="flex items-center gap-2 mb-4 md:mb-0">
                       <Dumbbell className="h-5 w-5 text-primary" />
-                      <span className="font-semibold text-lg">MuscleMotionHub</span>
+                      <span className="font-semibold text-lg">Muscle Hub</span>
                     </div>
                     <div className="flex flex-wrap gap-6">
                       <Link to="/" className="text-sm text-muted-foreground hover:text-foreground">Home</Link>
